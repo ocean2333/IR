@@ -19,12 +19,13 @@ class IrPipeline:
             print("mysql connect error")
 
     def process_item(self, item, spider):
-        print("start due with item",item["id"])
+        if(item["id"]%100==0):
+            print("start due with item",item["id"])
         sql = "INSERT INTO url_db \
         (id,keywords, url, url_md5, pr, content, description,watch,create_date,favourite,title) \
          VALUES (%s,'%s','%s','%s',%s,'%s','%s',%s,'%s',%s,'%s')" % \
         (item["id"],item["keywords"],item["url"],item["url_md5"],item["pr"],item["content"],item["description"],item["watch"],item["date"],item["favourite"],item["title"])
-        #print(sql)
+       
         
         try:
             # 执行sql语句
@@ -34,8 +35,9 @@ class IrPipeline:
             #print("insert data success")
         except:
             # 如果发生错误则回滚
-            self.db.rollback()
-            #print("insert data error")
+            self.db.rollback() 
+            print(sql)
+            print("insert data error")
 
     def close_spoder(self,spider):
         self.db.close()

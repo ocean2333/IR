@@ -1,3 +1,2 @@
-scrapy
-pymysql
-hashlib
+Scrapy==2.2.1
+pymysql==0.10.0

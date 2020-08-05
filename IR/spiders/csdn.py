@@ -37,7 +37,7 @@ class ExampleSpider(scrapy.Spider):
             print("url_hashpool init failed-database connect error")
 
     def parse(self, response):
-        print('start parse : ' + response.url)
+        #print('start parse : ' + response.url)
         md5 = hashlib.md5(response.url.encode("utf8")).hexdigest()
         #利用url的MD5去重
         if(md5 in self.url_hashpool):
@@ -55,14 +55,20 @@ class ExampleSpider(scrapy.Spider):
             #构造item
             item = IRItem()
             item["keywords"] = response.xpath('/html/head//meta[@name="keywords"]/@content').extract()[0]
-            item["description"] = response.xpath('/html/head//meta[@name="description"]/@content').extract()[0]
-            item["title"] = response.xpath('/html/head/title/text()').extract()[0]
+            item["description"] = pymysql.escape_string(response.xpath('/html/head//meta[@name="description"]/@content').extract()[0])
+            item["title"] = pymysql.escape_string(response.xpath('/html/head/title/text()').extract()[0])
             item["id"] = self.id
             self.id = self.id+1  
             item["url"] = response.url
             item["url_md5"] = md5
             item["pr"] = 0 
             item["content"] = response.xpath
+            #contents = response.xpath("/html//text()").extract()
+            #linked_content = ""
+            #for content in contents:
+            #    linked_content += content
+            #item["content"] = pymysql.escape_string(linked_content)
+
             item["watch"] = int(response.xpath('/html/body//span[@class="read-count"]/text()').extract()[0])
             raw_fav = response.xpath('/html/body//span[@class="get-collection"]/text()').extract()[0].replace("\n","").replace(" ","")
             if(raw_fav==""):
