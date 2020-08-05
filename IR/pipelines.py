@@ -7,13 +7,11 @@
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
 import pymysql
-import logging
 
 class IrPipeline:
 
     def open_spider(self,spider):
         try:
-            logging.basicConfig(filename='G:\code\IR\database.log',level=logging.DEBUG)
             self.db = pymysql.connect(host='localhost',user="root",password='12345678',database='lol',port=3306,charset='utf8')
             self.cursor = self.db.cursor()
             print("mysql connect success")
@@ -37,7 +35,6 @@ class IrPipeline:
         except:
             # 如果发生错误则回滚
             self.db.rollback()
-            logging.debug('insert data error',item)
             #print("insert data error")
 
     def close_spoder(self,spider):

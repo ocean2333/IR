@@ -24,7 +24,7 @@ class ExampleSpider(scrapy.Spider):
             sql = "SELECT url_md5 FROM url_db WHERE title is not NULL"
             self.cursor.execute(sql)
             res = self.cursor.fetchall()
-            self.url_hashpool.union(set(res))
+            self.url_hashpool = self.url_hashpool.union(set(res))
             print("url_hashpool init success")
             #init id num
             sql = "SELECT id from url_db order by id DESC"
