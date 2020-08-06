@@ -21,11 +21,10 @@ class IrPipeline:
     def process_item(self, item, spider):
         if(item["id"]%100==0):
             print("start due with item",item["id"])
-        sql = "INSERT INTO url_db \
+        sql = "INSERT IGNORE INTO test \
         (id,keywords, url, url_md5, pr, content, description,watch,create_date,favourite,title) \
          VALUES (%s,'%s','%s','%s',%s,'%s','%s',%s,'%s',%s,'%s')" % \
         (item["id"],item["keywords"],item["url"],item["url_md5"],item["pr"],item["content"],item["description"],item["watch"],item["date"],item["favourite"],item["title"])
-       
         
         try:
             # 执行sql语句
