@@ -1,2 +1,4 @@
 Scrapy==2.2.1
 pymysql==0.10.0
+whoosh==2.7.4
+jieba==0.42.1

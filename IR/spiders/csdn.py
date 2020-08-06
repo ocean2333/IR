@@ -69,8 +69,7 @@ class ExampleSpider(scrapy.Spider):
             content = ""
             for c in raw_contents:
                 content += c
-            item["content"] = content
-
+            item["content"] = pymysql.escape_string(content)
             item["watch"] = int(response.xpath('/html/body//span[@class="read-count"]/text()').extract()[0])
             raw_fav = response.xpath('/html/body//span[@class="get-collection"]/text()').extract()[0].replace("\n","").replace(" ","")
             if(raw_fav==""):
