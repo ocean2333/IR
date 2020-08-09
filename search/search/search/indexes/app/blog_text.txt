@@ -1,0 +1,2 @@
+{{ object.post_title }}
+{{ object.post_content }}

@@ -1,2 +1,5 @@
 log.txt
 index/*
+IR/test.py
+crawls/*
+.vscode/settings.json
