@@ -3,3 +3,5 @@ index/*
 IR/test.py
 crawls/*
 .vscode/settings.json
+app/whoosh_index/*
+app/db.sqlite3
