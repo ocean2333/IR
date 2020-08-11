@@ -1,4 +1,37 @@
-<form role="search" method="get" id="searchform" action="{% url 'haystack_search' %}">
-    <input type="search" name="q" placeholder="搜索" required>
-    <button type="submit"><span class="ion-ios-search-strong"></span></button>
-</form>
+<li>
+    <form action="{% url 'article:haystack_search' %}" method="get">
+        <input type="text" name="q" placeholder="请输入关键字">
+        <input type="submit" id="search" value="搜索">
+    </form>
+</li>
+
+<style type="text/css">
+#box{
+width: 380px;
+margin: 30px auto;
+font-family: 'Microsoft YaHei';
+font-size: 14px;
+}
+input{
+width: 200px;
+border: 1px solid #e2e2e2;
+height: 30px;
+float: left;
+background-image: url(/static/images/logo.jpg);
+background-repeat: no-repeat;
+background-size: 25px;
+background-position:5px center;
+padding:0 0 0 40px;
+}
+#search{
+width: 78px;
+height: 32px;
+float: right;
+background: black;
+color: white;
+text-align: center;
+line-height: 32px;
+cursor: pointer;
+}
+
+</style>

@@ -16,9 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url,include
-from haystack.views import SearchView
+from .views import SearchSuggest,SearchSearch
+from haystack.views import SearchView  
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'search/$', SearchView(), name='haystack_search'),
+    url(r'search/$', SearchSearch.as_view(), name="search"),
+    url(r'^$', TemplateView.as_view(template_name="index.html"), name="index"),
 ]

@@ -1,12 +1,11 @@
 from .models import blog
 from haystack import indexes
-import pymysql
 
 
-class BlogIndex(indexes.SearchIndex, indexes.Indexable):
+class blogIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
-    title = indexes.CharField()
-    url = indexes.CharField()
+    title = indexes.CharField(model_attr='title')
+    url = indexes.CharField(model_attr='url')
 
     def get_model(self):
         return blog

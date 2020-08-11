@@ -4,3 +4,4 @@ whoosh==2.7.4
 jieba==0.42.1
 django==2.8.1
 django-haystack==2.8.1
+elasticsearch==7.8.1

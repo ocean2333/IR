@@ -26,7 +26,7 @@ SECRET_KEY = 'k1_nmt46cma(_baovv06ewt27hs%n@i0zxgki6k$-tlhwy48l='
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+HAYSTACK_LIMIT_TO_REGISTERED_MODELS = False
 
 # Application definition
 
@@ -125,13 +125,23 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
-# 配置全文检索引擎
-HAYSTACK_CONNECTIONS = {
+'''
 	'default': {
 		'ENGINE':'haystack.backends.whoosh_cn_backend.WhooshEngine',
 		'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
 	}
+'''
+
+# 配置全文检索引擎
+HAYSTACK_CONNECTIONS = {
+    'default': {
+            'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+            # 此处为elasticsearch运行的服务器ip地址，端口号默认为9200
+            'URL': 'http://localhost:9200',  
+            # 指定elasticsearch建立的索引库的名称
+            'INDEX_NAME': 'blog', 
+            'TIMEOUT': 60 
+    }
 }
 
 # 自动维护索引
