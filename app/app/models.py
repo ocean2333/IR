@@ -7,6 +7,7 @@ class blog(models.Model):
     content = models.TextField(help_text="html格式的页面内容，仅在page类型才可用")
     title = models.CharField(max_length=200)
     url = models.CharField(max_length=200, help_text="URL链接名称")
+    keywords = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.post_title
+        return self.url

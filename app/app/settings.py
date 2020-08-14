@@ -139,8 +139,9 @@ HAYSTACK_CONNECTIONS = {
             # 此处为elasticsearch运行的服务器ip地址，端口号默认为9200
             'URL': 'http://localhost:9200',  
             # 指定elasticsearch建立的索引库的名称
-            'INDEX_NAME': 'blog', 
-            'TIMEOUT': 60 
+            'INDEX_NAME': 'bblog', 
+            'TIMEOUT': 60 ,
+            "ANALYSER":"ik_max_word"
     }
 }
 

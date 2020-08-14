@@ -45,7 +45,7 @@ class SearchSearch(View):
         page_size = 10
         start_time = datetime.now()
         response = client.search(
-            index="blog",
+            index="bblog",
             body={
                 "query": {
                     "multi_match": {

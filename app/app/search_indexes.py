@@ -8,8 +8,7 @@ class blogIndex(indexes.SearchIndex, indexes.Indexable):
     title = indexes.CharField(model_attr='title')
     url = indexes.CharField(model_attr='url')
     date = indexes.CharField(model_attr="date")
-    watch = indexes.IntegerField()
-    favourite = indexes.IntegerField()
+
 
 
     def get_model(self):
