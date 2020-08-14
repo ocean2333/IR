@@ -49,6 +49,7 @@ class SearchSearch(View):
             body={
                 "query": {
                     "multi_match": {
+                        "analyzer":"ik_max_word",
                         "query": key_words,
                         "fields": ["title", "text"],
                     }
